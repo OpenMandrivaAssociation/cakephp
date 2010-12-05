@@ -2,7 +2,7 @@
 
 Name:		cakephp
 Version:	1.2.6
-Release:	%mkrel 1
+Release:	%mkrel 2
 
 Summary:	MVC rapid application development framework for PHP
 License:	MIT
