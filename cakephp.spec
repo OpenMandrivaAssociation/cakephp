@@ -1,20 +1,19 @@
-%define snapshot ef18ab2
+%define snapshot g96a8d97
+%define revision 8236c7e
 
 Name:		cakephp
-Version:	1.2.6
-Release:	%mkrel 2
+Version:	1.3.12
+Release:	%mkrel 1
 
 Summary:	MVC rapid application development framework for PHP
 License:	MIT
 Group:		Development/PHP
 URL:		http://cakephp.org/
-Source0:	http://download.github.com/%{name}-%{name}1x-%{snapshot}.tar.gz
+Source0:	http://download.github.com/%{name}-%{name}-%{version}-0-%{snapshot}.tar.gz
 # Fixes the path to lauch the console php script to an absolute path.
-Patch0:		cakephp-1.2.6-binary-lib-path.patch
-
+Patch0:		%{name}-%{version}-binary-lib-path.patch
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}
-
 Requires:	apache-mod_php
 Requires:	php-pdo
 Suggests:	cakephp-cli
@@ -64,8 +63,8 @@ to launch quicker.
 
 
 %prep
-%setup -qn %{name}-%{name}1x-%{snapshot}
-%patch0 -p1
+%setup -q -n %{name}-%{name}-%{revision}
+%patch0 -p0
 
 
 %build
