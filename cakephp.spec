@@ -1,19 +1,22 @@
-%define snapshot g96a8d97
-%define revision 8236c7e
+%define commit 924fb6f
+%define tag 60df687
 
 Name:		cakephp
-Version:	1.3.12
-Release:	%mkrel 1
+Version:	1.3.13
+Release:	1
 
 Summary:	MVC rapid application development framework for PHP
 License:	MIT
 Group:		Development/PHP
 URL:		http://cakephp.org/
-Source0:	http://download.github.com/%{name}-%{name}-%{version}-0-%{snapshot}.tar.gz
-# Fixes the path to lauch the console php script to an absolute path.
-Patch0:		%{name}-%{version}-binary-lib-path.patch
+		# https://github.com/cakephp/cakephp/tarball/%{version}:
+Source0:	%{name}-%{name}-%{version}-0-g%{commit}.tar.gz
+		# Fix the path to launch the console php script to an
+		# absolute path:
+Patch0:		%{name}-%{version}-mdv-fix-lib-path.patch
+
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+
 Requires:	apache-mod_php
 Requires:	php-pdo
 Suggests:	cakephp-cli
@@ -63,38 +66,37 @@ to launch quicker.
 
 
 %prep
-%setup -q -n %{name}-%{name}-%{revision}
-%patch0 -p0
+%setup -q -n %{name}-%{name}-%{tag}
+%patch0 -p1
 
 
 %build
-# Remove unnecessary 'empty' files and directories.  These were added by
-# upstream to workaround braindead MacOS X extracting utilities that would
-# silently not create empty directories.
+# Remove unnecessary 'empty' files and directories.  These were added
+# by upstream to workaround braindead MacOS X extracting utilities
+# that would silently not create empty directories:
 find ./ -type f -name empty -size 0 -print0 | xargs -0 rm -f
-
-# We don't need the msdos command launcher.
+# We don't need the msdos command launcher:
 CAKEBAT=cake/console/cake.bat
 [[ -f ${CAKEBAT} ]] && rm -f ${CAKEBAT}
 
 
 %install
-rm -rf %{buildroot}
-
 mkdir -p %{buildroot}%{_datadir}/php/%{name}/cake/console
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_docdir}/%{name}
 
-cp -r cake/libs cake/tests cake/config cake/*.php %{buildroot}%{_datadir}/php/%{name}/cake
-cp -r cake/console/libs cake/console/*.php %{buildroot}%{_datadir}/php/%{name}/cake/console
+cp -r cake/libs \
+    cake/tests \
+    cake/config \
+    cake/*.php \
+    %{buildroot}%{_datadir}/php/%{name}/cake
+cp -r cake/console/libs \
+    cake/console/*.php \
+    %{buildroot}%{_datadir}/php/%{name}/cake/console
 cp -r cake/console/cake %{buildroot}%{_bindir}/cake
 
 cp README %{buildroot}%{_docdir}/%{name}
 cp cake/*.txt %{buildroot}%{_docdir}/%{name}
-
-
-%clean
-rm -rf %{buildroot}
 
 
 %files
