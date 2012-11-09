@@ -1,0 +1,25 @@
+diff --git a/cake/console/cake b/cake/console/cake
+index c3d8567..e6b232f 100755
+--- a/cake/console/cake
++++ b/cake/console/cake
+@@ -18,17 +18,9 @@
+ # @license              MIT License (http://www.opensource.org/licenses/mit-license.php)
+ #
+ ################################################################################
+-LIB=$(cd -P -- "$(dirname -- "$0")" && pwd -P) && LIB=$LIB/$(basename -- "$0")
+-
+-while [ -h $LIB ]; do
+-    DIR=$(dirname -- "$LIB")
+-    SYM=$(readlink $LIB)
+-    LIB=$(cd $DIR && cd $(dirname -- "$SYM") && pwd)/$(basename -- "$SYM")
+-done
+-
+-LIB=$(dirname -- "$LIB")/
++LIB=/usr/share/php/cakephp/cake/console/
+ APP=`pwd`
+ 
+ exec php -q ${LIB}cake.php -working "${APP}" "$@"
+ 
+-exit;
+\ No newline at end of file
++exit;
