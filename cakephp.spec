@@ -113,3 +113,23 @@ cp cake/*.txt %{buildroot}%{_docdir}/%{name}
 %files cli
 %{_bindir}/cake
 %{_datadir}/php/%{name}/cake/console
+
+
+%changelog
+* Sat Nov 05 2011 Joao Victor Duarte Martins <jvdm@mandriva.com.br> 1.3.13-1
++ Revision: 717754
+- New version 1.3.13
+
+* Thu Sep 29 2011 Sergey Zhemoitel <serg@mandriva.org> 1.3.12-1
++ Revision: 702038
+- new version 1.3.12
+
+* Sun Dec 05 2010 Oden Eriksson <oeriksson@mandriva.com> 1.2.6-2mdv2011.0
++ Revision: 610094
+- rebuild
+
+* Fri Mar 19 2010 Joao Victor Martins <jvictor@mandriva.com> 1.2.6-1mdv2010.1
++ Revision: 525266
+- Imported to cooker
+- Created package structure for cakephp.
+
