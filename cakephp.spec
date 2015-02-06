@@ -3,7 +3,7 @@
 
 Name:		cakephp
 Version:	1.3.13
-Release:	1
+Release:	2
 
 Summary:	MVC rapid application development framework for PHP
 License:	MIT
