@@ -8,7 +8,7 @@ Release:	2
 Summary:	MVC rapid application development framework for PHP
 License:	MIT
 Group:		Development/PHP
-URL:		http://cakephp.org/
+URL:		https://cakephp.org/
 		# https://github.com/cakephp/cakephp/tarball/%{version}:
 Source0:	%{name}-%{name}-%{version}-0-g%{commit}.tar.gz
 		# Fix the path to launch the console php script to an
